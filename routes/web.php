@@ -190,6 +190,8 @@ Route::post('/adverts/import', [AdvertsController::class, 'import'])->name('adve
 
 Route::get('/pay', [PayController::class, 'pay'])->name('pay');
 
+Route::get('/pay2', [PayController::class, 'pay2'])->name('pay2');
+
 //Импорт товаров
 
 Route::post('/admin/cars/import', [CarImportController::class, 'import'])->name('cars.import');

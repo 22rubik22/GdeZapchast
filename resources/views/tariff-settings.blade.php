@@ -1,5 +1,3 @@
-<!-- resources/views/tariff-settings.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/tariff-settings.css') }}">
     <title>Настройки тарифа</title>
-    <style>
-        .payment-container {
-            display: none;
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
 @include('components.header-seller')
@@ -37,10 +26,10 @@
         <button id="save-button">Сохранить</button>
     </div>
 
-    <div class="payment-container">
+    <div class="payment-container" style="display: none;">
         <p>Сумма к оплате: <span id="payment-amount">₽0.00</span></p>
         <button id="pay-button-card">Оплатить картой</button>
-
+        <button id="pay-button-card">Оплатить со счета</button>
     </div>
 </div>
 
@@ -56,6 +45,7 @@
     const saveButton = document.getElementById('save-button');
     const paymentContainer = document.querySelector('.payment-container');
     const paymentAmount = document.getElementById('payment-amount');
+    const payButtonCard = document.getElementById('pay-button-card');
 
     slider.oninput = function() {
         manualInput.value = this.value;
@@ -92,19 +82,9 @@
         paymentContainer.style.display = 'block';
     });
 
-    // Инициализация цен при загрузке страницы
-    updatePrices(slider.value);
-
-      // Добавляем обработчик события для кнопки "Оплатить картой"
-      document.getElementById('pay-button-card').addEventListener('click', function() {
-            window.location.href = '/pay';
-        });
-
-        // Добавляем обработчик события для кнопки "Оплата со счета"
-        document.getElementById('pay-button-account').addEventListener('click', function() {
-            // Здесь можно добавить логику для оплаты со счета
-            alert('Оплата со счета не реализована');
-        });
+    payButtonCard.addEventListener('click', function() {
+        window.location.href = '/pay';
+    });
 </script>
 @endsection
 
